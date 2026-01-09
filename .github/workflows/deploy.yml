@@ -16,7 +16,7 @@ jobs:
       uses: 'google-github-actions/auth@v1'
       with:
         # Assicurati che questo segreto contenga il JSON completo della chiave
-        credentials_json: '${{ secrets.GCP_SA_KEY }}'' # Useremo un segreto per la sicurezza
+        credentials_json: '${{ secrets.GCP_SA_KEY }}' # Useremo un segreto per la sicurezza
 
     - name: Deploy della Function
       id: 'deploy'
