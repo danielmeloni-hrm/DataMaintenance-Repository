@@ -8,5 +8,8 @@ steps:
       - --runtime=python310
       - --region=europe-west1
       - --entry-point=send_email_alert
-      - --trigger-topic=projects/analystack/subscriptions/DataMaintenance_test2-sub
-      - --source=alert-click-ga4/  # Specifica la sottocartella
+      - --trigger-topic=DataMaintenance_test2  # Usa il nome del TOPIC, non della sub
+      - --source=.
+
+options:
+  logging: CLOUD_LOGGING_ONLY
