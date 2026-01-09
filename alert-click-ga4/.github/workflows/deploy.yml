@@ -1,0 +1,29 @@
+name: Deploy Cloud Function
+on:
+  push:
+    branches:
+      - main  # Il deploy parte quando carichi su questo branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout del codice
+      uses: actions/checkout@v3
+
+    - name: Auth su Google Cloud
+      id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}' # Useremo un segreto per la sicurezza
+
+    - name: Deploy della Function
+      id: 'deploy'
+      uses: 'google-github-actions/deploy-cloud-functions@v1'
+      with:
+        name: 'send_email_alert' # Nome della funzione su GCP
+        runtime: 'python310'
+        region: 'europe-west1' # Cambiala con la tua regione
+        entry_point: 'send_email_alert' # Nome della funzione nel file main.py
+        event_trigger_type: 'google.pubsub.topic.publish'
+        event_trigger_resource: 'projects/analystack/topics/DataMaintenance_test2' # Inserisci i tuoi dati
