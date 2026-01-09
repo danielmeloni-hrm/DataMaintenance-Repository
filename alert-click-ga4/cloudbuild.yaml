@@ -8,5 +8,5 @@ steps:
       - --runtime=python310
       - --region=europe-west1
       - --entry-point=send_email_alert
-      - --trigger-topic=IL_TUO_TOPIC_PUBSUB
+      - --trigger-topic=projects/analystack/subscriptions/DataMaintenance_test2-sub
       - --source=alert-click-ga4/  # Specifica la sottocartella
