@@ -1,0 +1,1 @@
+SELECT event_name,count(event_name) FROM `analystack.analytics_517838177.events_2025*` group by event_name
